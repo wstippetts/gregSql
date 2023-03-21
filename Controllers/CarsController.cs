@@ -10,4 +10,33 @@ public class CarsController : ControllerBase
   {
     this.carsService = carsService;
   }
+  [HttpGet]
+  public ActionResult<List<Car>> Find()
+  {
+    try
+    {
+      List<Car> cars = carsService.Find();
+      return Ok(cars);
+    }
+    catch (Exception e)
+    {
+      return BadRequest(e.Message);
+    }
+  }
+
+  [HttpGet("{id}")]
+  public ActionResult<Car> Find(int id)
+  {
+    try
+    {
+      Car car = carsService.Find(id);
+      return Ok(car);
+    }
+    catch (Exception e)
+    {
+      return BadRequest(e.Message);
+    }
+  }
+
+  //   [HttpPost]
 }
